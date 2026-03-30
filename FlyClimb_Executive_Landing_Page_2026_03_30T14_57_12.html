@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlyClimb Executive transforms complex documents into executive briefings in minutes. Upload Excel, PDFs, and images - receive presentation-ready narratives via email.">
+    <title>FlyClimb Executive - AI-Powered Executive Briefing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        
+        .logo-main {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo-sub {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-headline {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            max-width: 900px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .hero-headline::before {
+            content: '⚡';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+        
+        .hero-headline h1 {
+            font-size: 48px;
+            margin: 20px 0 0 0;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtext {
+            font-size: 22px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .problem h2 {
+            font-size: 36px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .problem p {
+            font-size: 20px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .solution h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+        
+        .benefits h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .benefit {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .benefit h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .benefit p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Signup Section */
+        .signup {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .signup h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .signup p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .pricing-note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .file-limits {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #856404;
+            text-align: left;
+        }
+        
+        .file-limits strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        
+        .faq-item {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .faq-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .faq-item p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        .privacy-badge {
+            display: inline-block;
+            background: #27ae60;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-headline h1 {
+                font-size: 28px;
+            }
+            
+            .hero-headline::before {
+                width: 60px;
+                height: 60px;
+                font-size: 35px;
+                top: -20px;
+            }
+            
+            .hero-subtext {
+                font-size: 18px;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .problem h2, .solution h2, .benefits h2, .faq h2 {
+                font-size: 28px;
+            }
+            
+            .signup h2 {
+                font-size: 32px;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .signup-form {
+                padding: 30px 20px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+            
+            .logo-main {
+                font-size: 22px;
+            }
+            
+            .logo-sub {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-icon">FC</div>
+                <div class="logo-text">
+                    <div class="logo-main">FlyClimb</div>
+                    <div class="logo-sub">Executive</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">⚡ AI-Powered Executive Briefing Platform</div>
+                <div class="hero-headline">
+                    <h1>Transform Complex Documents into Executive Briefings in Minutes</h1>
+                </div>
+                <p class="hero-subtext">Upload Excel, PDFs, and images. Receive presentation-ready narratives via email. No reading. No waiting. Just results.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5-15</span>
+                        <span class="stat-label">Minutes Processing</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24hrs</span>
+                        <span class="stat-label">Data Retention Only</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5 Files</span>
+                        <span class="stat-label">Per Upload</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>You have 2 hours to present. 200 pages to read. Zero time to prepare.</h2>
+            <p>Board packets, deal documents, client deliverables - executives face this challenge daily. Reading everything isn't an option. Winging it isn't either.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2>How FlyClimb Executive Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Documents</h3>
+                    <p>Upload up to 5 files (2MB each). Excel sheets, PDFs, and images. Multiple formats, one upload.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Process</h3>
+                    <p>Our AI analyzes your documents and creates a cohesive narrative with talking points.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receive via Email</h3>
+                    <p>Get your presentation-ready briefing in 5-15 minutes. No waiting, no checking back.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Why Executives Choose FlyClimb Executive</h2>
+            <div class="benefit-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Async Processing</h3>
+                    <p>Upload and go. No need to wait or check back. We email you when ready.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Maximum Privacy</h3>
+                    <p>We retain your data for 24 hours only. Complete deletion guaranteed.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Mobile-First</h3>
+                    <p>Works perfectly on your phone. Review briefings during your commute.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Presentation-Ready</h3>
+                    <p>Get talking points, key insights, and Q&A preparation - not just summaries.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Multi-Format</h3>
+                    <p>Process Excel, PDFs, and images together into one unified narrative.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>Save Hours</h3>
+                    <p>Turn 3 hours of reading into 15 minutes of focused preparation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section class="signup">
+        <div class="container">
+            <h2>Get Early Access to FlyClimb Executive</h2>
+            <p>Join 500+ executives preparing smarter, not harder</p>
+            <div class="signup-form">
+                <form action="docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_blank">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="entry.NAME_ID" required placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="entry.EMAIL_ID" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <input type="text" id="role" name="entry.ROLE_ID" placeholder="Board Member, Partner, VP, etc.">
+                    </div>
+                    <button type="submit" class="submit-btn">Join Waitlist</button>
+                    <p class="pricing-note">Founding members get <span class="highlight">$4.99/month</span> (regular price $7.49)</p>
+                    <div class="file-limits">
+                        <strong>Upload Limits:</strong>
+                        • Maximum 5 files per conversation<br>
+                        • Maximum 2MB per file<br>
+                        • Supported formats: Excel, PDF, JPG, PNG
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>How long does processing take?</h3>
+                <p>Most document sets are processed in 5-15 minutes. You'll receive an email as soon as your briefing is ready.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What are the file size and quantity limits?</h3>
+                <p>You can upload up to 5 files per conversation, with each file limited to 2MB. We support Excel (.xlsx, .xls), PDF, and images (JPG, PNG).</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How long do you keep my data?</h3>
+                <p>We retain your data for 24 hours only. After that, all uploaded documents and generated narratives are permanently deleted from our systems. If you need to continue working with the same documents, simply re-upload them.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What makes FlyClimb Executive different from ChatGPT?</h3>
+                <p>FlyClimb Executive is purpose-built for executives. We process multiple document types together, deliver via email asynchronously, and generate presentation-specific talking points - not generic summaries.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I customize the output format?</h3>
+                <p>Yes! You can specify your presentation length, audience type, and focus area. We'll tailor the narrative accordingly.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Is my data secure during processing?</h3>
+                <p>Absolutely. All processing happens on secure AWS infrastructure with encryption. We never share your data with third parties, and everything is automatically deleted after 24 hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 FlyClimb Executive - All Rights Reserved</p>
+            <p>Transform Documents into Executive Intelligence</p>
+            <div class="privacy-badge">🔒 We Retain Your Data for 24 Hours Only</div>
+        </div>
+    </footer>
+</body>
+</html>
+
